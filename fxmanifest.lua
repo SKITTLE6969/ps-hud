@@ -9,9 +9,6 @@ ox_lib 'locale'
 shared_scripts {
 	'@ox_lib/init.lua',
 	'@qbx_core/modules/lib.lua',
-	'locales/en.lua',
-	'locales/*.lua',
-	'config.lua',
 	'uiconfig.lua'
 }
 
@@ -28,6 +25,7 @@ files {
 	'html/*',
 	'config/client.lua',
 	'config/shared.lua',
+	'locales/*.json',
 }
 
 lua54 'yes'

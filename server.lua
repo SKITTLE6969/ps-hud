@@ -1,3 +1,5 @@
+local config = require 'config.server'
+local sharedConfig = require 'config.shared'
 local ResetStress = false
 
 -- Commands
@@ -203,7 +205,7 @@ RegisterNetEvent('hud:server:saveUIData', function(data)
 end)
 
 lib.callback.register('hud:server:getMenu', function(source)
-    return Config.Menu
+    return sharedConfig‎.menu
 end)
 
 lib.callback.register('hud:server:getRank', function(source)

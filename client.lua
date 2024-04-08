@@ -65,7 +65,7 @@ local function SendAdminStatus()
     SendNUIMessage({
         action = 'menu',
         topic = 'adminonly',
-        adminOnly = Config.AdminOnly,
+        adminOnly = config.AdminOnly,
         isAdmin = admin,
     })
 end
@@ -73,10 +73,10 @@ end
 local function sendUIUpdateMessage(data)
     SendNUIMessage({
         action = 'updateUISettings',
-        icons = data.icons,
-        layout = data.layout,
-        colors = data.colors,
-    })
+	icons = data.icons,
+	layout = data.layout,
+	colors = data.colors,
+	})
 end
 
 local function HandleSetupResource()
@@ -87,7 +87,7 @@ local function HandleSetupResource()
             admin = false
         end
         SendAdminStatus()
-    if Config.AdminOnly then
+    if config.AdminOnly then
         -- Send the client what the saved ui config is (enforced by the server)
         if next(UIConfig) then
             sendUIUpdateMessage(UIConfig)

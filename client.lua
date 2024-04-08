@@ -73,7 +73,7 @@ end
 
 local function hasHarness()
     if not IsPedInAnyVehicle(cache.ped, false) then return end
-    return hasHarness = exports['jim-mechanic']:HasHarness()
+    return exports['jim-mechanic']:HasHarness()
 end
 
 local function loadSettings()

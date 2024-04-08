@@ -27,7 +27,7 @@ ui_page 'html/index.html'
 files {
 	'html/*',
 	'config/client.lua',
-    	'config/shared.lua',
+	'config/shared.lua',
 }
 
 lua54 'yes'

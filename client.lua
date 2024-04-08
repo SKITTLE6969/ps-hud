@@ -75,7 +75,7 @@ local function hasHarness()
     if not IsPedInAnyVehicle(cache.ped, false) then return end
 
     local _harness = false
-    local hasHarness = exports['qb-smallresources']:HasHarness()
+    local hasHarness = exports['jim-mechanic']:HasHarness()
     if hasHarness then
         _harness = true
     else

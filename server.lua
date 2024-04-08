@@ -204,8 +204,8 @@ RegisterNetEvent('hud:server:saveUIData', function(data)
     TriggerClientEvent('hud:client:UpdateUISettings', -1, uiConfigData)
 end)
 
-lib.callback.register('hud:server:getMenu', function(source)
-    return sharedConfig‎.menu
+lib.callback.register('hud:server:getMenu', function()
+    return sharedConfig.menu
 end)
 
 lib.callback.register('hud:server:getRank', function(source)

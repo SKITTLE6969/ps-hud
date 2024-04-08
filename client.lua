@@ -836,11 +836,11 @@ end
 local lastFuelUpdate = 0
 local lastFuelCheck = {}
 
-local function getFuelLevel(cache.vehicle)
+local function getFuelLevel(vehicle)
     local updateTick = GetGameTimer()
     if (updateTick - lastFuelUpdate) > 2000 then
         lastFuelUpdate = updateTick
-        lastFuelCheck = math.floor(exports[Config.FuelScript]:GetFuel(cache.vehicle))
+        lastFuelCheck = math.floor(GetVehicleFuelLevel(vehicle))
     end
     return lastFuelCheck
 end

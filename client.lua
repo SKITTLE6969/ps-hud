@@ -73,16 +73,8 @@ end
 
 local function hasHarness()
     if not IsPedInAnyVehicle(cache.ped, false) then return end
-
-    local _harness = false
     local hasHarness = exports['jim-mechanic']:HasHarness()
-    if hasHarness then
-        _harness = true
-    else
-        _harness = false
-    end
-
-    harness = _harness
+    return hasHarness
 end
 
 local function loadSettings()
@@ -1289,15 +1281,15 @@ CreateThread(function()
 		local crossroads = getCrossroads(cache.ped)
                     SendNUIMessage ({
                         action = 'update',
-                        value = heading 
+                        value = heading
                     })
                     updateBaseplateHud({
                         show,
                         crossroads[1],
                         crossroads[2],
                         Menu.isCompassShowChecked,
-                        Menu.isShowStreetsChecked,
-                        Menu.isPointerShowChecked,
+			Menu.isShowStreetsChecked,
+			Menu.isPointerShowChecked,
                         Menu.isDegreesShowChecked,
                     })
                     lastInVehicle = true
@@ -1313,8 +1305,8 @@ CreateThread(function()
                             show = true,
                             showCompass = true,
                         })
-                        prevBaseplateStats[1] = true
-                        prevBaseplateStats[4] = true
+			prevBaseplateStats[1] = true
+			prevBaseplateStats[4] = true
                     else
                         SendNUIMessage ({
                             action = 'baseplate',

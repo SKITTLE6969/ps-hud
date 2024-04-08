@@ -73,8 +73,8 @@ return {
     },
 
     FuelBlacklist = {
-    	`surge`,
-    	`iwagen`,
+        `surge`,
+        `iwagen`,
     	`voltic`,
     	`voltic2`,
     	`raiden`,

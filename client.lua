@@ -999,10 +999,10 @@ CreateThread(function()
     end
 end)
 
-function isElectric(cache.vehicle)
+function isElectric(vehicle)
     local noBeeps = false
     for k, v in pairs(Config.FuelBlacklist) do
-        if GetEntityModel(cache.vehicle) == GetHashKey(v) then
+        if GetEntityModel(vehicle) == GetHashKey(v) then
             noBeeps = true
         end
     end

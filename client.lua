@@ -1249,10 +1249,10 @@ end
 local lastCrossroadUpdate = 0
 local lastCrossroadCheck = {}
 
-local function getCrossroads(cache.ped)
+local function getCrossroads(player)
     local updateTick = GetGameTimer()
     if updateTick - lastCrossroadUpdate > 5000 then
-        local pos = GetEntityCoords(cache.ped)
+        local pos = GetEntityCoords(player)
         local street1, street2 = GetStreetNameAtCoord(pos.x, pos.y, pos.z)
         lastCrossroadUpdate = updateTick
         lastCrossroadCheck = { GetStreetNameFromHashKey(street1), GetStreetNameFromHashKey(street2) }

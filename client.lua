@@ -252,7 +252,7 @@ RegisterNUICallback('openMenuSounds', function(data, cb)
         Menu.isOpenMenuSoundsChecked = true
     else
         Menu.isOpenMenuSoundsChecked = false
-    end 
+    end
     TriggerEvent("hud:client:playHudChecklistSound")
 end)
 
@@ -850,7 +850,7 @@ end
 
 CreateThread(function()
     local wasInVehicle = false
-    while true do        
+    while true do
         if LocalPlayer.state.isLoggedIn then
             Wait(500)
 
@@ -1002,7 +1002,7 @@ end)
 
 function isElectric(vehicle)
     local noBeeps = false
-    for k, v in pairs(Config.FuelBlacklist) do
+    for _, v in pairs(Config.FuelBlacklist) do
         if GetEntityModel(vehicle) == GetHashKey(v) then
             noBeeps = true
         end
@@ -1140,7 +1140,7 @@ local function GetBlurIntensity(stresslevel)
 end
 
 local function GetEffectInterval(stresslevel)
-    for k, v in pairs(config.EffectInterval) do
+    for _, v in pairs(config.EffectInterval) do
         if stresslevel >= v.min and stresslevel <= v.max then
             return v.timeout
         end
@@ -1165,7 +1165,7 @@ CreateThread(function()
                 end
 
                 Wait(1000)
-                for i = 1, FallRepeat, 1 do
+                for _ = 1, FallRepeat, 1 do
                     Wait(750)
                     DoScreenFadeOut(200)
                     Wait(1000)
@@ -1264,7 +1264,8 @@ end
 -- Compass Update loop
 
 CreateThread(function()
-	local heading, lastHeading = 0, 1
+    local lastHeading = 1
+    local heading
     local lastIsOutCompassCheck = Menu.isOutCompassChecked
     local lastInVehicle = false
 	while true do
@@ -1278,16 +1279,16 @@ CreateThread(function()
             else
                 heading = tostring(round(360.0 - GetEntityHeading(cache.ped)))
             end
-            
-            if heading == '360' then 
+
+            if heading == '360' then
                 heading = '0' 
             end
 
             if heading ~= lastHeading or lastInVehicle ~= cache.vehicle then
                 if cache.vehicle then
-                    local crossroads = getCrossroads(cache.ped)
-                    SendNUIMessage ({ 
-                        action = 'update', 
+		local crossroads = getCrossroads(cache.ped)
+                    SendNUIMessage ({
+                        action = 'update',
                         value = heading 
                     })
                     updateBaseplateHud({
@@ -1301,9 +1302,9 @@ CreateThread(function()
                     })
                     lastInVehicle = true
                 else
-                    if not Menu.isOutCompassChecked then
-                        SendNUIMessage ({ 
-                            action = 'update', 
+		if not Menu.isOutCompassChecked then
+                        SendNUIMessage ({
+                            action = 'update',
                             value = heading 
                         })
                         SendNUIMessage ({

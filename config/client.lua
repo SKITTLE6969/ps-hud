@@ -1,7 +1,7 @@
 return {
     menuKey = 'I', -- Key to open the HUD menu
     useMPH = true, -- If true, speed math will be done as MPH, if false KPH will be used (YOU HAVE TO CHANGE CONTENT IN STYLES.CSS TO DISPLAY THE CORRECT TEXT)
-    
+    FuelScript = 'LegacyFuel',
     -- Admin only to change hud icons/shapes
     AdminOnly = false,
     

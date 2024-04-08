@@ -912,7 +912,7 @@ CreateThread(function()
                     talking,
                     armed,
                     oxygen,
-                    GetPedParachuteState(cache.ped),
+                    parachute,
                     -1,
                     cruiseOn,
                     nitroActive,

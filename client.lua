@@ -2,7 +2,7 @@ local config = require 'config.client'
 local sharedConfig = require 'config.shared'
 local PlayerData = QBX.PlayerData
 local UIConfig = UIConfig
-local speedMultiplier = config.UseMPH and 2.23694 or 3.6
+local speedMultiplier = config.useMPH and 2.23694 or 3.6
 local seatbeltOn = false
 local cruiseOn = false
 local showAltitude = false
@@ -972,7 +972,7 @@ end)
 
 function isElectric(vehicle)
     local noBeeps = false
-    for _, v in pairs(Config.FuelBlacklist) do
+    for _, v in pairs(config.FuelBlacklist) do
         if GetEntityModel(vehicle) == GetHashKey(v) then
             noBeeps = true
         end
@@ -985,7 +985,7 @@ CreateThread(function()
     while true do
         if LocalPlayer.state.isLoggedIn then
             if IsPedInAnyVehicle(cache.ped, false) and not IsThisModelABicycle(GetEntityModel(GetVehiclePedIsIn(cache.ped, false))) and not isElectric(GetVehiclePedIsIn(cache.ped, false)) then
-                if exports[Config.FuelScript]:GetFuel(GetVehiclePedIsIn(cache.ped, false)) <= 20 then -- At 20% Fuel Left
+                if exports[config.FuelScript]:GetFuel(GetVehiclePedIsIn(cache.ped, false)) <= 20 then -- At 20% Fuel Left
                     if sharedConfig.menu.isLowFuelChecked then
                         TriggerServerEvent("InteractSound_SV:PlayOnSource", "pager", 0.10)
                         exports.qbx_core:Notify(locale('notify.low_fuel'), 'error')
@@ -1053,9 +1053,9 @@ end)
 CreateThread(function() -- Speeding
     while true do
         if LocalPlayer.state.isLoggedIn then
-            if IsPedInAnyVehicle(cache.ped, false) then
-                local speed = GetEntitySpeed(GetVehiclePedIsIn(cache.ped, false)) * speedMultiplier
-                local stressSpeed = seatbeltOn and config.MinimumSpeed or config.MinimumSpeedUnbuckled
+            if cache.vehicle then
+                local speed = GetEntitySpeed(cache.vehicle) * speedMultiplier
+                local stressSpeed = seatbeltOn and config.stress.minForSpeeding or config.stress.minForSpeedingUnbuckled
                 if speed >= stressSpeed then
                     TriggerServerEvent('hud:server:GainStress', math.random(1, 3))
                 end
@@ -1067,7 +1067,7 @@ end)
 
 local function IsWhitelistedWeaponStress(weapon)
     if weapon then
-        for _, v in pairs(config.WhitelistedWeaponStress) do
+        for _, v in pairs(config.stress.whitelistedWeapons) do
             if weapon == v then
                 return true
             end
@@ -1082,7 +1082,7 @@ CreateThread(function() -- Shooting
             local weapon = GetSelectedPedWeapon(cache.ped)
             if weapon ~= `WEAPON_UNARMED` then
                 if IsPedShooting(cache.ped) and not IsWhitelistedWeaponStress(weapon) then
-                    if math.random() < config.StressChance then
+                    if math.random() < config.stress.chance then
                         TriggerServerEvent('hud:server:GainStress', math.random(1, 3))
                     end
                     Wait(100)
@@ -1101,7 +1101,7 @@ end)
 -- Stress Screen Effects
 
 local function GetBlurIntensity(stresslevel)
-    for _, v in pairs(config.Intensity['blur']) do
+    for _, v in pairs(config.stress.blurIntensity['blur']) do
         if stresslevel >= v.min and stresslevel <= v.max then
             return v.intensity
         end
@@ -1110,7 +1110,7 @@ local function GetBlurIntensity(stresslevel)
 end
 
 local function GetEffectInterval(stresslevel)
-    for _, v in pairs(config.EffectInterval) do
+    for _, v in pairs(config.stress.effectInterval) do
         if stresslevel >= v.min and stresslevel <= v.max then
             return v.timeout
         end
@@ -1144,7 +1144,7 @@ CreateThread(function()
                     Wait(BlurIntensity)
                     TriggerScreenblurFadeOut(1000.0)
                 end
-            elseif stress >= config.MinimumStress then
+            elseif stress >= config.stress.minForShaking then
                 local BlurIntensity = GetBlurIntensity(stress)
                 TriggerScreenblurFadeIn(1000.0)
                 Wait(BlurIntensity)

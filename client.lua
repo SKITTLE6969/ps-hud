@@ -175,7 +175,7 @@ RegisterNUICallback('closeMenu', function(_, cb)
     SetNuiFocus(false, false)
 end)
 
-RegisterKeyMapping('menu', Lang:t('info.open_menu'), 'keyboard', Config.OpenMenu)
+RegisterKeyMapping('menu', locale('info.open_menu'), 'keyboard', config.menuKey)
 
 -- Reset hud
 local function restartHud()

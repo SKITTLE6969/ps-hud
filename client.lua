@@ -1,3 +1,4 @@
+local PlayerData = QBX.PlayerData
 local config = Config
 local UIConfig = UIConfig
 local speedMultiplier = config.UseMPH and 2.23694 or 3.6
@@ -133,13 +134,13 @@ RegisterNetEvent("QBCore:Client:OnPlayerLoaded", function()
 end)
 
 RegisterNetEvent("QBCore:Client:OnPlayerUnload", function()
-    QBX.PlayerData = {}
+    PlayerData = {}
     admin = false
     SendAdminStatus()
 end)
 
 RegisterNetEvent("QBCore:Player:SetPlayerData", function(val)
-    QBX.PlayerData = val
+    PlayerData = val
 end)
 
 -- Event Handlers
@@ -867,7 +868,7 @@ CreateThread(function()
                 end
             end
 
-            playerDead = IsEntityDead(cache.ped) or QBX.PlayerData.metadata["inlaststand"] or QBX.PlayerData.metadata["isdead"] or false
+            playerDead = IsEntityDead(cache.ped) or PlayerData.metadata["inlaststand"] or PlayerData.metadata["isdead"] or false
             parachute = GetPedParachuteState(cache.ped)
 
             -- Stamina
@@ -1046,8 +1047,8 @@ RegisterNetEvent('hud:client:ShowAccounts', function(type, amount)
 end)
 
 RegisterNetEvent('hud:client:OnMoneyChange', function(type, amount, isMinus)
-    cashAmount = QBX.PlayerData.money['cash']
-    bankAmount = QBX.PlayerData.money['bank']
+    cashAmount = PlayerData.money['cash']
+    bankAmount = PlayerData.money['bank']
 		if type == 'cash' and amount == 0 then return end
     SendNUIMessage({
         action = 'updatemoney',

@@ -1,5 +1,6 @@
+local config = require 'config.client'
+local sharedConfig = require 'config.shared'
 local PlayerData = QBX.PlayerData
-local config = Config
 local UIConfig = UIConfig
 local speedMultiplier = config.UseMPH and 2.23694 or 3.6
 local seatbeltOn = false

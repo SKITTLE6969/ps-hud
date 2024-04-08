@@ -165,7 +165,7 @@ RegisterNetEvent('hud:server:saveUIData', function(data)
         local colorEffectsLabel = "\n    colorEffects = {"
         file:write(colorEffectsLabel)
 
-        for k, v in ipairs(data.colors[colorName].colorEffects) do
+        for k, _ in ipairs(data.colors[colorName].colorEffects) do
             local colorEffectIndexLabel = "\n        ["..k.."] = {"
             file:write(colorEffectIndexLabel)
 

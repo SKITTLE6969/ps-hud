@@ -73,8 +73,7 @@ end
 
 local function hasHarness()
     if not IsPedInAnyVehicle(cache.ped, false) then return end
-    local hasHarness = exports['jim-mechanic']:HasHarness()
-    return hasHarness
+    return hasHarness = exports['jim-mechanic']:HasHarness()
 end
 
 local function loadSettings()
@@ -1123,7 +1122,7 @@ end)
 -- Stress Screen Effects
 
 local function GetBlurIntensity(stresslevel)
-    for k, v in pairs(config.Intensity['blur']) do
+    for _, v in pairs(config.Intensity['blur']) do
         if stresslevel >= v.min and stresslevel <= v.max then
             return v.intensity
         end
@@ -1273,7 +1272,7 @@ CreateThread(function()
             end
 
             if heading == '360' then
-                heading = '0' 
+                heading = '0'
             end
 
             if heading ~= lastHeading or lastInVehicle ~= cache.vehicle then
@@ -1297,7 +1296,7 @@ CreateThread(function()
 		if not Menu.isOutCompassChecked then
                         SendNUIMessage ({
                             action = 'update',
-                            value = heading 
+                            value = heading
                         })
                         SendNUIMessage ({
                             action = 'baseplate',

@@ -20,7 +20,6 @@ local hp = 100
 local armed = 0
 local parachute = -1
 local oxygen = 100
-local engine = 0
 local dev = false
 local admin = false
 local playerDead = false

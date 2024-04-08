@@ -691,7 +691,7 @@ end)
 
 local function IsWhitelistedWeaponArmed(weapon)
     if weapon then
-        for _, v in pairs(config.WhitelistedWeaponArmed) do
+        for _, v in pairs(config.weaponsArmedMode) do
             if weapon == v then
                 return true
             end
